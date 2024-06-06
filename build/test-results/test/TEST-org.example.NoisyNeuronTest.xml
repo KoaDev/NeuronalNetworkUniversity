@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="org.example.NoisyNeuronTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2024-06-06T20:24:19" hostname="QUR7308A" time="11.112">
+  <properties/>
+  <testcase name="testRecognizeGeneratedNoisySignal()" classname="org.example.NoisyNeuronTest" time="0.071"/>
+  <testcase name="testRecognizeNoisySignal()" classname="org.example.NoisyNeuronTest" time="0.069"/>
+  <testcase name="testNonRecognizedSignal()" classname="org.example.NoisyNeuronTest" time="0.062"/>
+  <system-out><![CDATA[Apprentissage du neuron avec des signaux bruitÃ©...
+Fait en 2209 tours.
+Precision moyenne : 0.7027718
+
+RÃ©sultats pour un signal bruitÃ©:
+Sortie du neurone : 0.99589324
+Apprentissage du neuron avec des signaux bruitÃ©...
+Fait en 2375 tours.
+Precision moyenne : 0.6465124
+
+RÃ©sultats pour un signal bruitÃ©:
+Sortie du neurone : 0.9931214
+Apprentissage du neuron avec des signaux bruitÃ©...
+Fait en 2328 tours.
+Precision moyenne : 0.7122918
+
+RÃ©sultats pour un signal bruitÃ©:
+Sortie du neurone : 6.946562E-4
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

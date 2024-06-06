@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/NeuronalNetworkUniversity.iml" filepath="$PROJECT_DIR$/.idea/modules/NeuronalNetworkUniversity.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/NeuronalNetworkUniversity.main.iml" filepath="$PROJECT_DIR$/.idea/modules/NeuronalNetworkUniversity.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/NeuronalNetworkUniversity.test.iml" filepath="$PROJECT_DIR$/.idea/modules/NeuronalNetworkUniversity.test.iml" />
+    </modules>
+  </component>
+</project>

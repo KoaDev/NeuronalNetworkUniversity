@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="org.example.Sinusoidale3HarmoniqueNeuronTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2024-06-06T20:24:37" hostname="QUR7308A" time="13.837">
+  <properties/>
+  <testcase name="testRecognizeNoisySignal()" classname="org.example.Sinusoidale3HarmoniqueNeuronTest" time="0.064"/>
+  <testcase name="testRecognizeGeneratedSinusoidale3HarmoniqueSignal()" classname="org.example.Sinusoidale3HarmoniqueNeuronTest" time="0.066"/>
+  <testcase name="testNonRecognizedSignal()" classname="org.example.Sinusoidale3HarmoniqueNeuronTest" time="0.059"/>
+  <system-out><![CDATA[Apprentissage du neuron avec des triples signaux sinusoidaux avec harmonique...
+Fait en 5795 tours.
+Precision moyenne : 0.7509764
+
+RÃ©sultats pour un signal a triple sinusoidal avec harmonique:
+Sortie du neurone : 0.9464514
+Apprentissage du neuron avec des triples signaux sinusoidaux avec harmonique...
+Fait en 5767 tours.
+Precision moyenne : 0.76649666
+
+RÃ©sultats pour un signal a triple sinusoidal avec harmonique:
+Sortie du neurone : 0.9991263
+Apprentissage du neuron avec des triples signaux sinusoidaux avec harmonique...
+Fait en 5318 tours.
+Precision moyenne : 0.74151886
+
+RÃ©sultats pour un signal a triple sinusoidal avec harmonique:
+Sortie du neurone : 0.0064818454
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

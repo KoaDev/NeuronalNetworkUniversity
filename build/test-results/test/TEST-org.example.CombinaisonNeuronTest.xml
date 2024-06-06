@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="org.example.CombinaisonNeuronTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2024-06-06T20:24:13" hostname="QUR7308A" time="0.22">
+  <properties/>
+  <testcase name="testRecognizeNoisySignal()" classname="org.example.CombinaisonNeuronTest" time="0.087"/>
+  <testcase name="testRecognizeGeneratedSignal()" classname="org.example.CombinaisonNeuronTest" time="0.067"/>
+  <testcase name="testNonRecognizedSignal()" classname="org.example.CombinaisonNeuronTest" time="0.064"/>
+  <system-out><![CDATA[Apprentissage du neuron avec des signaux combinÃ©s...
+Fait en 566 tours.
+Precision moyenne : 0.5966806
+
+Resultats pour un signal genere (combinaison):
+Sortie du neurone : 0.9956176
+
+Resultats pour un signal genere (combinaison):
+Sortie du neurone : 0.994827
+
+Resultats pour un signal genere (combinaison):
+Sortie du neurone : 4.2695934E-12
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
