@@ -78,6 +78,8 @@ public abstract class Neurone implements iNeurone
 		// On boucle jusqu'à ce que l'apprentissage soit fini
 		do
 		{
+			compteurEchecs = 0;
+
 			// On part du principe que tout va bien se passer => drapeau à vrai
 			apprentissageFini = true;
 

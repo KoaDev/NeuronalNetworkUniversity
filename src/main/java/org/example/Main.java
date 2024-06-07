@@ -28,9 +28,6 @@ public class Main {
         NeuronSuperMax neuronBruit = new NeuronSuperMax(
                 new String[]{"src/main/resources/Bruit.wav", "src/main/resources/Sinusoide.wav", "src/main/resources/Carre.wav", "src/main/resources/Sinusoide2.wav", "src/main/resources/Sinusoide3Harmoniques.wav"},
                 new float[]{1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f}, "Bruit");
-        NeuronSuperMax neuronCombinaison = new NeuronSuperMax(
-                new String[]{"src/main/resources/Combinaison.wav"},
-                new float[]{1.0f}, "Combinaison");
 
 
         for (String path : trainingPaths) {
@@ -40,7 +37,6 @@ public class Main {
             neuronSinusDouble.evaluateFile(path);
             neuronSinusTripleHarmonique.evaluateFile(path);
             neuronBruit.evaluateFile(path);
-            neuronCombinaison.evaluateFile(path);
         }
         System.out.println("------------------------------------------------------------");
     }

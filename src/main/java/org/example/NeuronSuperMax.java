@@ -26,14 +26,15 @@ public class NeuronSuperMax {
             Son sound = new Son(path);
 
             int blockSize = 512; // Taille de chaque bloc de données
-            int numberOfBlocks = (int) Math.ceil((double) sound.donnees().length / blockSize);
+            int numberOfBlocks = (int) ((double) sound.donnees().length / blockSize);
 
             for (int j = 0; j < numberOfBlocks; j++) {
                 float[] block = sound.bloc_deTaille(j, blockSize);
 
                 Complexe[] fftResult = NeuronUtil.calculerFFT(block);
                 float[] characteristics = NeuronUtil.extraireCaracteristiques(fftResult);
-                float[] normalizedCharacteristics = NeuronUtil.normaliserCaracteristiques(characteristics);
+                //float[] normalizedCharacteristics = NeuronUtil.normaliserCaracteristiques(characteristics);
+                float[] normalizedCharacteristics = characteristics;
 
                 trainingData.add(normalizedCharacteristics);
                 labelsList.add(label); // Étiquette pour ce type de signal
@@ -55,7 +56,7 @@ public class NeuronSuperMax {
         Son sound = new Son(path);
 
         int blockSize = 512;
-        int numberOfBlocks = (int) Math.ceil((double) sound.donnees().length / blockSize);
+        int numberOfBlocks = (int) ((double) sound.donnees().length / blockSize);
 
         float averageResult = 0;
 
@@ -64,7 +65,8 @@ public class NeuronSuperMax {
 
             Complexe[] fftResult = NeuronUtil.calculerFFT(block);
             float[] characteristics = NeuronUtil.extraireCaracteristiques(fftResult);
-            float[] normalizedCharacteristics = NeuronUtil.normaliserCaracteristiques(characteristics);
+            //float[] normalizedCharacteristics = NeuronUtil.normaliserCaracteristiques(characteristics);
+            float[] normalizedCharacteristics = characteristics;
 
             neurone.metAJour(normalizedCharacteristics);
             averageResult += neurone.sortie();
