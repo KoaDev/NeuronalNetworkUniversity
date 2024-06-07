@@ -12,7 +12,7 @@ import java.util.List;
 
 public class NeuronSuperMax {
 
-    public final iNeurone neurone = new NeuroneHeaviside(512);
+    public final iNeurone neurone = new NeuroneSigmoide(512);
 
     private final String name;
     public NeuronSuperMax(String[] trainingPaths, float[] labels, String name) {
@@ -24,19 +24,24 @@ public class NeuronSuperMax {
             String path = trainingPaths[i];
             float label = labels[i];
             Son sound = new Son(path);
+            Son noise = new Son("src/main/resources/Bruit.wav");
+
+            float[] allData = sound.donnees();
+
+
+            // Normaliser les données en utilisant les valeurs max et min
+            float[] normalizedData = new float[allData.length];
 
             int blockSize = 512; // Taille de chaque bloc de données
-            int numberOfBlocks = (int) ((double) sound.donnees().length / blockSize);
+            int numberOfBlocks = (int) ((double) normalizedData.length / blockSize);
 
             for (int j = 0; j < numberOfBlocks; j++) {
-                float[] block = sound.bloc_deTaille(j, blockSize);
+                float[] block = new float[blockSize];
+                System.arraycopy(NeuronUtil.normaliserCaracteristiques(allData), j * blockSize, block, 0, Math.min(blockSize, normalizedData.length - j * blockSize));
 
                 Complexe[] fftResult = NeuronUtil.calculerFFT(block);
                 float[] characteristics = NeuronUtil.extraireCaracteristiques(fftResult);
-                //float[] normalizedCharacteristics = NeuronUtil.normaliserCaracteristiques(characteristics);
-                float[] normalizedCharacteristics = characteristics;
-
-                trainingData.add(normalizedCharacteristics);
+                trainingData.add(characteristics);
                 labelsList.add(label); // Étiquette pour ce type de signal
             }
         }
@@ -48,11 +53,11 @@ public class NeuronSuperMax {
         }
 
         System.out.println("Apprentissage du neurone avec des signaux variés...");
-        System.out.println("Fait en " + neurone.apprentissage(NeuronUtil.addNoise(trainingDataArray, 0.15f), labelsArray) + " tours.");
+        System.out.println("Fait en " + neurone.apprentissage(trainingDataArray, labelsArray) + " tours.");
     }
 
     public void evaluateFile(String path) {
-        System.out.println("Entraînement du neurone " + name + "...");
+        System.out.println(name + "...");
         Son sound = new Son(path);
 
         int blockSize = 512;
@@ -65,7 +70,6 @@ public class NeuronSuperMax {
 
             Complexe[] fftResult = NeuronUtil.calculerFFT(block);
             float[] characteristics = NeuronUtil.extraireCaracteristiques(fftResult);
-            //float[] normalizedCharacteristics = NeuronUtil.normaliserCaracteristiques(characteristics);
             float[] normalizedCharacteristics = characteristics;
 
             neurone.metAJour(normalizedCharacteristics);

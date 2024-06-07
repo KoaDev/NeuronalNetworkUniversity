@@ -4,7 +4,6 @@ public class Main {
 
     private static final String[] trainingPaths = {
             "src/main/resources/Sinusoide.wav",
-            "src/main/resources/Bruit.wav",
             "src/main/resources/Carre.wav",
             "src/main/resources/Sinusoide2.wav",
             "src/main/resources/Combinaison.wav",
@@ -14,20 +13,18 @@ public class Main {
     public static void main(String[] args) {
 
         NeuronSuperMax neuronSquare = new NeuronSuperMax(
-                new String[]{"src/main/resources/Carre.wav", "src/main/resources/Bruit.wav", "src/main/resources/Sinusoide.wav", "src/main/resources/Sinusoide2.wav", "src/main/resources/Sinusoide3Harmoniques.wav"},
-                new float[]{1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f}, "Carré");
+                new String[]{"src/main/resources/Carre.wav", "src/main/resources/Sinusoide.wav", "src/main/resources/Sinusoide2.wav", "src/main/resources/Sinusoide3Harmoniques.wav"},
+                new float[]{1.0f, 0.0f, 0.0f, 0.0f, 0.0f}, "Carré");
         NeuronSuperMax neuronSinus = new NeuronSuperMax(
-                new String[]{"src/main/resources/Sinusoide.wav", "src/main/resources/Bruit.wav", "src/main/resources/Carre.wav", "src/main/resources/Sinusoide2.wav", "src/main/resources/Sinusoide3Harmoniques.wav"},
-                new float[]{1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f}, "Sinusoïde");
+                new String[]{"src/main/resources/Sinusoide.wav", "src/main/resources/Carre.wav", "src/main/resources/Sinusoide2.wav", "src/main/resources/Sinusoide3Harmoniques.wav"},
+                new float[]{1.0f, 0.0f, 0.0f, 0.0f, 0.0f}, "Sinusoïde");
         NeuronSuperMax neuronSinusDouble = new NeuronSuperMax(
-                new String[]{"src/main/resources/Sinusoide2.wav", "src/main/resources/Bruit.wav", "src/main/resources/Carre.wav", "src/main/resources/Sinusoide.wav", "src/main/resources/Sinusoide3Harmoniques.wav"},
-                new float[]{1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f}, "Sinusoïde double harmonique");
+                new String[]{"src/main/resources/Sinusoide2.wav", "src/main/resources/Carre.wav", "src/main/resources/Sinusoide.wav", "src/main/resources/Sinusoide3Harmoniques.wav"},
+                new float[]{1.0f, 0.0f, 0.0f, 0.0f, 0.0f}, "Sinusoïde double harmonique");
         NeuronSuperMax neuronSinusTripleHarmonique = new NeuronSuperMax(
-                new String[]{"src/main/resources/Sinusoide3Harmoniques.wav", "src/main/resources/Bruit.wav", "src/main/resources/Carre.wav", "src/main/resources/Sinusoide.wav", "src/main/resources/Sinusoide2.wav"},
-                new float[]{1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f}, "Sinusoïde triple harmonique");
-        NeuronSuperMax neuronBruit = new NeuronSuperMax(
-                new String[]{"src/main/resources/Bruit.wav", "src/main/resources/Sinusoide.wav", "src/main/resources/Carre.wav", "src/main/resources/Sinusoide2.wav", "src/main/resources/Sinusoide3Harmoniques.wav"},
-                new float[]{1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f}, "Bruit");
+                new String[]{"src/main/resources/Sinusoide3Harmoniques.wav", "src/main/resources/Carre.wav", "src/main/resources/Sinusoide.wav", "src/main/resources/Sinusoide2.wav"},
+                new float[]{1.0f, 0.0f, 0.0f, 0.0f, 0.0f}, "Sinusoïde triple harmonique");
+        //NeuronSuperMax neuronBruit = new NeuronSuperMax(new String[]{"src/main/resources/Bruit.wav", "src/main/resources/Sinusoide.wav", "src/main/resources/Carre.wav", "src/main/resources/Sinusoide2.wav", "src/main/resources/Sinusoide3Harmoniques.wav"}, new float[]{1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f}, "Bruit");
 
 
         for (String path : trainingPaths) {
@@ -36,7 +33,7 @@ public class Main {
             neuronSinus.evaluateFile(path);
             neuronSinusDouble.evaluateFile(path);
             neuronSinusTripleHarmonique.evaluateFile(path);
-            neuronBruit.evaluateFile(path);
+         //   neuronBruit.evaluateFile(path);
         }
         System.out.println("------------------------------------------------------------");
     }

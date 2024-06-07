@@ -8,10 +8,6 @@ import org.example.neurone.iNeurone;
 import java.util.Random;
 
 public class NeuronUtil {
-
-    public static float noiseLevel = 0.15f; // Niveau de bruit (15%)
-    private static final Random random = new Random();
-
     public static float[] extraireCaracteristiques(Complexe[] fftResult) {
         float[] caracteristiques = new float[fftResult.length];
         for (int i = 0; i < fftResult.length; i++) {
@@ -32,6 +28,17 @@ public class NeuronUtil {
             normalised[i] = caracteristiques[i] / max;
         }
         return normalised;
+    }
+
+    public static float[][] addNoise(float[][] original, float noiseLevel) {
+        Random random = new Random();
+        float[][] noisy = new float[original.length][original[0].length];
+        for (int i = 0; i < original.length; i++) {
+            for (int j = 0; j < original[i].length; j++) {
+                noisy[i][j] = original[i][j] + noiseLevel * (2 * random.nextFloat() - 1); // ajouter du bruit entre -noiseLevel et +noiseLevel
+            }
+        }
+        return noisy;
     }
 
     public static Complexe[] calculerFFT(float[] donneesAudio) {
@@ -59,16 +66,5 @@ public class NeuronUtil {
         // Moyenne de précision
         float averagePrecision = totalPrecision / entrees.length;
         System.out.println("Precision moyenne : " + averagePrecision);
-    }
-
-    public static float[][] addNoise(float[][] original, float noiseLevel) {
-        Random random = new Random();
-        float[][] noisy = new float[original.length][original[0].length];
-        for (int i = 0; i < original.length; i++) {
-            for (int j = 0; j < original[i].length; j++) {
-                noisy[i][j] = original[i][j] + noiseLevel * (2 * random.nextFloat() - 1); // ajouter du bruit entre -noiseLevel et +noiseLevel
-            }
-        }
-        return noisy;
     }
 }
