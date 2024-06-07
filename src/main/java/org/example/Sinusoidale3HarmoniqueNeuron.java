@@ -34,12 +34,6 @@ public class Sinusoidale3HarmoniqueNeuron {
             caracteristiquesList.add(caracteristiquesSinus);
             resultList.add(0.0f);  // Label pour les signaux sinusoïdaux
 
-            // Générer des signaux bruités
-            float[] signalBruit = NeuronUtil.generateSignalBruit(44100);
-            Complexe[] resultatFFTBruit = NeuronUtil.calculerFFT(signalBruit);
-            float[] caracteristiquesBruit = NeuronUtil.normaliserCaracteristiques(NeuronUtil.extraireCaracteristiques(resultatFFTBruit));
-            caracteristiquesList.add(caracteristiquesBruit);
-            resultList.add(0.0f);  // Label pour les signaux bruités
         }
 
         // Convertir la liste de caractéristiques et de résultats en tableau

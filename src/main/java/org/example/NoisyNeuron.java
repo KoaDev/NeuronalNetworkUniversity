@@ -55,7 +55,7 @@ public class NoisyNeuron {
         System.out.println("Fait en " + this.neurone.apprentissage(entrees, resultats) + " tours.");
 
         // Ajouter du bruit et évaluer la robustesse
-        NeuronUtil.evaluatePrecision(this.neurone, NeuronUtil.addNoise(entrees, NeuronUtil.noiseLevel), resultats);
+        NeuronUtil.evaluatePrecision(this.neurone, entrees, resultats);
 
     }
 

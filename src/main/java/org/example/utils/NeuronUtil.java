@@ -47,18 +47,18 @@ public class NeuronUtil {
         float[] signal = new float[tauxEchantillonnage];
         Random random = new Random();
         for (int i = 0; i < tauxEchantillonnage; i++) {
-            signal[i] = (float) (random.nextFloat() * random.nextFloat() - random.nextFloat());
+            signal[i] = (float) Math.sin(random.nextFloat() * random.nextFloat() - random.nextFloat());
         }
         return signal;
     }
     public static float[] genererSignalCarre(int tauxEchantillonnage) {
         float[] signal = new float[tauxEchantillonnage];
         // Ajouter une variation aléatoire à la fréquence
-        int baseFrequence = 440;
-        int frequence = baseFrequence + random.nextInt(20) - 10; // fréquence aléatoire entre 430 et 450
+        int baseFrequence = 22050;
+        int frequence = baseFrequence + random.nextInt(200) - 100; // fréquence aléatoire entre 430 et 450
         int periode = (int) (tauxEchantillonnage / frequence);
         for (int i = 0; i < tauxEchantillonnage; i++) {
-            signal[i] = (i % periode < periode / 2) ? (float) 1 : (float) -1;
+            signal[i] = i % periode < periode / 2 ? (float) 1 : (float) -1;
         }
         return signal;
     }
@@ -66,8 +66,8 @@ public class NeuronUtil {
     public static float[] genererSignalSinus(int tauxEchantillonnage) {
         float[] signal = new float[tauxEchantillonnage];
         // Ajouter une variation aléatoire à la fréquence et à l'amplitude
-        int baseFrequence = 440;
-        int frequence = baseFrequence + random.nextInt(20) - 10; // fréquence aléatoire entre 430 et 450
+        int baseFrequence = 22050;
+        int frequence = baseFrequence + random.nextInt(200) - 100; // fréquence aléatoire entre 430 et 450
         float amplitude = 1 + random.nextFloat() * 0.2f - 0.1f; // amplitude aléatoire entre 0.9 et 1.1
         for (int i = 0; i < tauxEchantillonnage; i++) {
             signal[i] = amplitude * (float) Math.sin(2 * Math.PI * frequence * i / tauxEchantillonnage);
@@ -78,14 +78,15 @@ public class NeuronUtil {
     public static float[] genererSignalCombinaison(int tauxEchantillonnage) {
         float[] signal = new float[tauxEchantillonnage];
         // Ajouter une variation aléatoire à la fréquence
-        int baseFrequence = 440;
-        int frequence = baseFrequence + random.nextInt(20) - 10; // fréquence aléatoire entre 430 et 450
+        int baseFrequence = 22050;
+        int frequence = baseFrequence + random.nextInt(200) - 100; // fréquence aléatoire entre 430 et 450
         int periode = (int) (tauxEchantillonnage / frequence);
         // Combinaison de signal carré et sinusoidal
         for (int i = 0; i < tauxEchantillonnage; i++) {
             float square = (i % periode < periode / 2) ? 1 : -1;
-            float sinus = (float) Math.sin(2 * Math.PI * frequence * i / tauxEchantillonnage);
-            signal[i] = (square + sinus) / 2; // combinaison des deux signaux
+            float sinus = (float) Math.sin(2 * Math.PI * frequence * i / tauxEchantillonnage) ;
+            float cosinus = (float) Math.cos(2 * Math.PI * frequence * i / tauxEchantillonnage) ;
+            signal[i] = (square + sinus + cosinus) / 2; // combinaison des deux signaux
         }
         return signal;
     }
@@ -102,10 +103,10 @@ public class NeuronUtil {
     public static float[] genererSignalDoubleSinus(int tauxEchantillonnage) {
         float[] signal = new float[tauxEchantillonnage];
         // Ajouter des variations aléatoires aux fréquences et amplitudes des deux sinusoïdes
-        int baseFrequence1 = 440;
-        int frequence1 = baseFrequence1 + random.nextInt(20) - 10; // fréquence 1 aléatoire entre 430 et 450
-        int baseFrequence2 = 880;
-        int frequence2 = baseFrequence2 + random.nextInt(20) - 10; // fréquence 2 aléatoire entre 870 et 890
+        int baseFrequence1 = 22050;
+        int frequence1 = baseFrequence1 + random.nextInt(200) - 100; // fréquence aléatoire entre 430 et 450
+        int baseFrequence2 = 22050 * 2;
+        int frequence2 = baseFrequence2 + random.nextInt(200) - 100; // fréquence 2 aléatoire entre 870 et 890
         float amplitude1 = 1 + random.nextFloat() * 0.2f - 0.1f; // amplitude 1 aléatoire entre 0.9 et 1.1
         float amplitude2 = 1 + random.nextFloat() * 0.2f - 0.1f; // amplitude 2 aléatoire entre 0.9 et 1.1
         for (int i = 0; i < tauxEchantillonnage; i++) {
@@ -118,12 +119,12 @@ public class NeuronUtil {
     public static float[] genererSignalSinusoidale3Harmonique(int tauxEchantillonnage) {
         float[] signal = new float[tauxEchantillonnage];
         // Ajouter des variations aléatoires aux fréquences et amplitudes des trois sinusoïdes
-        int baseFrequence1 = 440;
-        int frequence1 = baseFrequence1 + random.nextInt(20) - 10; // fréquence 1 aléatoire entre 430 et 450
-        int baseFrequence2 = 880;
-        int frequence2 = baseFrequence2 + random.nextInt(20) - 10; // fréquence 2 aléatoire entre 870 et 890
-        int baseFrequence3 = 1320;
-        int frequence3 = baseFrequence3 + random.nextInt(20) - 10; // fréquence 3 aléatoire entre 1310 et 1330
+        int baseFrequence1 = 22050;
+        int frequence1 = baseFrequence1 + random.nextInt(200) - 100; // fréquence 1 aléatoire entre 430 et 450
+        int baseFrequence2 = 22050 * 2;
+        int frequence2 = baseFrequence2 + random.nextInt(200) - 100; // fréquence 2 aléatoire entre 870 et 890
+        int baseFrequence3 = 22050 * 3;
+        int frequence3 = baseFrequence3 + random.nextInt(200) - 100; // fréquence 3 aléatoire entre 1310 et 1330
         float amplitude1 = 1 + random.nextFloat() * 0.2f - 0.1f; // amplitude 1 aléatoire entre 0.9 et 1.1
         float amplitude2 = 1 + random.nextFloat() * 0.2f - 0.1f; // amplitude 2 aléatoire entre 0.9 et 1.1
         float amplitude3 = 1 + random.nextFloat() * 0.2f - 0.1f; // amplitude 3 aléatoire entre 0.9 et 1.1

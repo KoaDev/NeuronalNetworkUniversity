@@ -29,18 +29,19 @@ public class SinusoidaleTwoNeuron {
         // Génération de signaux faux (sinus et bruit) pour augmenter le jeu de données
         for (int i = 0; i < 10; i++) {
             // Générer des signaux sinusoïdaux
+            float[] signalSquare = NeuronUtil.genererSignalCarre(44100);
+            Complexe[] resultatFFTSquare = NeuronUtil.calculerFFT(signalSquare);
+            float[] caracteristiquesSquare = NeuronUtil.normaliserCaracteristiques(NeuronUtil.extraireCaracteristiques(resultatFFTSquare));
+            caracteristiquesList.add(caracteristiquesSquare);
+            resultList.add(0.0f);  // Label pour les signaux sinusoïdaux
+
+            // Générer des signaux sinusoïdaux
             float[] signalSinus = NeuronUtil.genererSignalSinus(44100);
             Complexe[] resultatFFTSinus = NeuronUtil.calculerFFT(signalSinus);
             float[] caracteristiquesSinus = NeuronUtil.normaliserCaracteristiques(NeuronUtil.extraireCaracteristiques(resultatFFTSinus));
             caracteristiquesList.add(caracteristiquesSinus);
             resultList.add(0.0f);  // Label pour les signaux sinusoïdaux
 
-            // Générer des signaux bruités
-            float[] signalBruit = NeuronUtil.generateSignalBruit(44100);
-            Complexe[] resultatFFTBruit = NeuronUtil.calculerFFT(signalBruit);
-            float[] caracteristiquesBruit = NeuronUtil.normaliserCaracteristiques(NeuronUtil.extraireCaracteristiques(resultatFFTBruit));
-            caracteristiquesList.add(caracteristiquesBruit);
-            resultList.add(0.0f);  // Label pour les signaux bruités
         }
 
         // Convertir la liste de caractéristiques et de résultats en tableau
@@ -56,7 +57,7 @@ public class SinusoidaleTwoNeuron {
         System.out.println("Fait en " + this.neurone.apprentissage(entrees, resultats) + " tours.");
 
         // Ajouter du bruit et évaluer la robustesse
-        NeuronUtil.evaluatePrecision(this.neurone, NeuronUtil.addNoise(entrees, NeuronUtil.noiseLevel), resultats);
+        NeuronUtil.evaluatePrecision(this.neurone, entrees, resultats);
 
     }
 

@@ -15,17 +15,20 @@ public class CombinaisonNeuron {
     public CombinaisonNeuron() {
         //Génération de signaux carré pour augmenter le jeu de données
         List<float[]> caracteristiquesList = new ArrayList<>();
+        List<Float> resultList = new ArrayList<>();
         for (int i = 0; i < 50; i++) {
             float[] signal = NeuronUtil.genererSignalCombinaison(44100);
             Complexe[] resultatFFT = NeuronUtil.calculerFFT(signal);
             float[] caracteristiques = NeuronUtil.normaliserCaracteristiques(NeuronUtil.extraireCaracteristiques(resultatFFT));
             caracteristiquesList.add(caracteristiques);
+            resultList.add(1.0f);  // Label pour les signaux carrés
         }
-        // Convertir la liste de caractéristiques en tableau
+
+        // Convertir la liste de caractéristiques et de résultats en tableau
         float[][] entrees = caracteristiquesList.toArray(new float[0][]);
-        float[] resultats = new float[50];
-        for (int i = 0; i < 50; i++) {
-            resultats[i] = 1;
+        float[] resultats = new float[resultList.size()];
+        for (int i = 0; i < resultList.size(); i++) {
+            resultats[i] = resultList.get(i);
         }
 
         //Apprentissage

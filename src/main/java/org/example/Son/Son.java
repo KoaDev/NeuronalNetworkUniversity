@@ -3,6 +3,7 @@ package org.example.Son;
 import org.example.FFT.Complexe;
 import org.example.FFT.ComplexeCartesien;
 import org.example.FFT.FFTCplx;
+import org.example.utils.NeuronUtil;
 
 import java.util.Arrays;
 import java.io.File;
@@ -81,35 +82,21 @@ public class Son
 			System.out.println("Fichier " + args[0] + " : " + son.donnees.length + " echantillons a " + son.frequence() + "Hz");
 
 			// Effectuer la FFT sur les données audio
-			Complexe[] resultatFFT = Son.calculerFFT(son.donnees);
+			Complexe[] resultatFFT = NeuronUtil.calculerFFT(son.donnees);
 
 			// Afficher les valeurs du résultat
-			for (int i = 0; i < resultatFFT.length; ++i) {
-				System.out.print(i + " : (" + (float) resultatFFT[i].reel() + " ; " + (float) resultatFFT[i].imag() + "i)");
-				System.out.println(", (" + (float) resultatFFT[i].mod() + " ; " + (float) resultatFFT[i].arg() + " rad)");
-			}
+			System.out.println(
+					"Fichier " + args[0] + " : " + son.donnees().length + " échantillons à " + son.frequence() + "Hz");
+			System.out.println(
+					"Bloc 1 : " + son.bloc_deTaille(1, 512).length + " échantillons à " + son.frequence() + "Hz");
+
+
+			System.out.print(son.donnees.length);
+
+
 		} else
 			System.out.println("Veuillez donner le nom d'un fichier WAV en parametre SVP.");
 	}
-
-
-
-
-
-
-
-
-
-
-	public static Complexe[] calculerFFT(float[] donneesAudio) {
-		Complexe[] signal = new Complexe[donneesAudio.length];
-		for (int i = 0; i < donneesAudio.length; i++)
-			signal[i] = new ComplexeCartesien(donneesAudio[i], 0); // Créer des nombres complexes avec la partie imaginaire à zéro
-
-		// Appliquer la FFT sur le signal
-		return FFTCplx.appliqueSur(signal);
-	}
-
 
 
 }
