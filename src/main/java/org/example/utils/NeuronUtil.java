@@ -3,68 +3,57 @@ package org.example.utils;
 import org.example.FFT.Complexe;
 import org.example.FFT.ComplexeCartesien;
 import org.example.FFT.FFTCplx;
-import org.example.neurone.iNeurone;
-
-import java.util.Random;
 
 public class NeuronUtil {
+
+    // Méthode pour extraire les caractéristiques du résultat de la FFT
     public static float[] extraireCaracteristiques(Complexe[] fftResult) {
+        // Crée un tableau pour stocker les caractéristiques
         float[] caracteristiques = new float[fftResult.length];
+
+        // Parcours chaque coefficient FFT
         for (int i = 0; i < fftResult.length; i++) {
-            caracteristiques[i] = (float) fftResult[i].mod(); // Par exemple, utiliser le module des coefficients FFT
+            // Utilise le module des coefficients FFT comme caractéristique
+            caracteristiques[i] = (float) fftResult[i].mod();
         }
+
+        // Retourne le tableau de caractéristiques
         return caracteristiques;
     }
 
+    // Méthode pour normaliser les caractéristiques
     public static float[] normaliserCaracteristiques(float[] caracteristiques) {
         float max = 0;
+
+        // Trouve la valeur maximale dans les caractéristiques
         for (float value : caracteristiques) {
             if (value > max) {
                 max = value;
             }
         }
+
+        // Crée un tableau pour les caractéristiques normalisées
         float[] normalised = new float[caracteristiques.length];
+
+        // Normalise chaque caractéristique en la divisant par la valeur maximale
         for (int i = 0; i < caracteristiques.length; i++) {
             normalised[i] = caracteristiques[i] / max;
         }
+
+        // Retourne le tableau de caractéristiques normalisées
         return normalised;
     }
 
-    public static float[][] addNoise(float[][] original, float noiseLevel) {
-        Random random = new Random();
-        float[][] noisy = new float[original.length][original[0].length];
-        for (int i = 0; i < original.length; i++) {
-            for (int j = 0; j < original[i].length; j++) {
-                noisy[i][j] = original[i][j] + noiseLevel * (2 * random.nextFloat() - 1); // ajouter du bruit entre -noiseLevel et +noiseLevel
-            }
-        }
-        return noisy;
-    }
-
+    // Méthode pour calculer la FFT d'un signal audio
     public static Complexe[] calculerFFT(float[] donneesAudio) {
+        // Crée un tableau de nombres complexes à partir des données audio
         Complexe[] signal = new Complexe[donneesAudio.length];
-        for (int i = 0; i < donneesAudio.length; i++)
-            signal[i] = new ComplexeCartesien(donneesAudio[i], 0); // Créer des nombres complexes avec la partie imaginaire à zéro
-
-        // Appliquer la FFT sur le signal
-        return FFTCplx.appliqueSur(signal);
-    }
-
-    public static void evaluatePrecision(iNeurone n, float[][] entrees, float[] resultats) {
-        float totalPrecision = 0.0f;
-        for (int i = 0; i < entrees.length; ++i) {
-            // Pour une entrée donnée
-            final float[] entree = entrees[i];
-            // Mettre à jour la sortie du neurone
-            n.metAJour(entree);
-            // Calculer la précision pour cette entrée
-            float precision = 1.0f - Math.abs(resultats[i] - n.sortie());
-            totalPrecision += precision;
-            // Afficher cette sortie
-            //System.out.println("Entree " + i + " : " + n.sortie() + " (Precision : " + precision + ")");
+        for (int i = 0; i < donneesAudio.length; i++) {
+            // Crée des nombres complexes avec la partie imaginaire à zéro
+            signal[i] = new ComplexeCartesien(donneesAudio[i], 0);
         }
-        // Moyenne de précision
-        float averagePrecision = totalPrecision / entrees.length;
-        System.out.println("Precision moyenne : " + averagePrecision);
+
+        // Applique la FFT sur le signal et retourne le résultat
+        return FFTCplx.appliqueSur(signal);
     }
 }
